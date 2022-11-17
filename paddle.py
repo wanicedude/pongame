@@ -21,7 +21,6 @@ class Paddle(Turtle):  # paddle class is now the same as turtle
         self.goto(self.xcor(), new_y)
 
 
-
 class Ball (Turtle):
     def __init__(self):
         super().__init__()
@@ -37,5 +36,8 @@ class Ball (Turtle):
         new_ycor = self.ycor() + self.y_move
         self.goto(new_xcor, new_ycor)
 
-    def bounce(self):
-         self.y_move *= -1
+    def bounce_y(self):
+        self.y_move *= -1
+
+    def bounce_x(self):
+        self.x_move *= -1
