@@ -1,5 +1,6 @@
 from turtle import Screen, Turtle
-from paddle import Paddle
+from paddle import Paddle,Ball
+import time
 
 
 # create screen, its title, size and background colour
@@ -14,6 +15,11 @@ screen.tracer(0)
 # Create new paddle object from the paddle class
 r_paddle = Paddle((350, 0))
 l_paddle = Paddle((-350, 0))
+ball = Ball()
+
+
+    
+
 
 
 
@@ -28,7 +34,12 @@ screen.onkey(l_paddle.go_down, "s")
 game_is_on = True;
 
 while game_is_on:
+    time.sleep(0.1)
     screen.update()
-
+    ball.move()
+    
+    # Detect Collision 
+    if ball.ycor() > 280 or ball.ycor() < -280:
+        ball.bounce()
 
 screen.exitonclick()
