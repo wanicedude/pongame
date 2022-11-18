@@ -1,6 +1,7 @@
 from turtle import Screen, Turtle
 from paddle import Paddle,Ball
 import time
+from scoreboard import Scoreboard
 
 
 # create screen, its title, size and background colour
@@ -12,6 +13,7 @@ screen.title("Pong")
 # screen animator removal
 screen.tracer(0)
 
+scoreboard = Scoreboard()
 # Create new paddle object from the paddle class
 r_paddle = Paddle((350, 0))
 l_paddle = Paddle((-350, 0))
@@ -34,7 +36,7 @@ screen.onkey(l_paddle.go_down, "s")
 game_is_on = True;
 
 while game_is_on:
-    time.sleep(0.1)
+    time.sleep(ball.move_speed)
     screen.update()
     ball.move()
     
@@ -49,8 +51,10 @@ while game_is_on:
     # Detect right paddle miss
     if ball.xcor() > 380:
         ball.reset_position()
+        scoreboard.l_point()
     # Detect right paddle miss
     if ball.xcor() < - 380:
         ball.reset_position()
+        scoreboard.r_point()
 
 screen.exitonclick()
